@@ -1,5 +1,9 @@
 "use strict";
-
+const templates = {
+  articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
+  tagLink: Handlebars.compile(document.querySelector('#template-tag-link').innerHTML),
+  authorLink: Handlebars.compile(document.querySelector('#template-author-link').innerHTML),
+}
 const opts = {
   articleSelector: ".post",
   titleSelector: ".post-title",
@@ -81,12 +85,9 @@ function generateTitleLinks(customSelector = "") {
 
     /* create HTML of the link */
 
-    const linkHTML =
-      '<li><a href="#' +
-      articleId +
-      '"><span>' +
-      articleTitle +
-      "</span></a></li>";
+    const linkHTMLData = {id: articleId, title: articleTitle};
+    console.log("linkHTMLData", linkHTMLData);
+    const linkHTML = templates.articleLink(linkHTMLData);
     console.log("linkHTML", linkHTML);
 
     /* insert link into titleList */
@@ -162,7 +163,12 @@ function generateTags() {
     /* START LOOP: for each tag */
     for (let tag of articleTagsArray) {
       /* generate HTML of the link */
-      const linkHTML = '<li><a href="#tag-' + tag + '">' + tag + "</a></li>";
+      /*const linkHTML = '<li><a href="#tag-' + tag + '">' + tag + "</a></li>";
+      console.log("linkHTML", linkHTML); */
+
+      const linkHTMLData = {id: tag, title: tag};
+      console.log("linkHTMLData",linkHTMLData);
+      const linkHTML = templates.tagLink(linkHTMLData);
       console.log("linkHTML", linkHTML);
 
       /* add generated code to html variable */
@@ -284,13 +290,19 @@ function generateAuthors() {
     console.log("articleAuthor:", articleAuthor);
 
     /* generate HTML of the link */
-    const linkHTML =
+    /*const linkHTML =
       '<li><a href="#author-' +
       articleAuthor +
       '">' +
       articleAuthor +
       "</a></li>";
+    console.log("linkHTML", linkHTML); */
+
+    const linkHTMLData = {id: articleAuthor, title: articleAuthor};
+    console.log("linkHTMLData", linkHTMLData);
+    const linkHTML = templates.authorLink(linkHTMLData);
     console.log("linkHTML", linkHTML);
+
 
     /* add generated code to html variable */
 
@@ -325,6 +337,7 @@ function generateAuthors() {
       " (" +
       allAuthors[author] +
       ")</a></li>";
+
     console.log("authorLinkHTML:", authorLinkHTML);
 
     allAuthorsHTML += authorLinkHTML;
