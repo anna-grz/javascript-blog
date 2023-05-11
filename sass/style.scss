@@ -11,7 +11,9 @@ $font-text: 'Source Sans Pro', sans-serif;
 
 /* Global */
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -57,7 +59,8 @@ body {
   flex: 2 0 0;
 }
 
-.sidebar, .posts {
+.sidebar,
+.posts {
   background: $color-light;
   margin-right: 10px;
   padding: 40px;
@@ -101,7 +104,6 @@ body {
   }
 }
 
-
 /* Post */
 
 .post {
@@ -132,23 +134,23 @@ body {
 }
 
 .tag-size-2 {
-    font-size: 100%;
-    margin-left: 3px;
+  font-size: 100%;
+  margin-left: 3px;
 }
 
 .tag-size-3 {
-    font-size: 120%;
-    margin-left: 3px;
+  font-size: 120%;
+  margin-left: 3px;
 }
 
 .tag-size-4 {
-    font-size: 130%;
-    margin-left: 3px;
+  font-size: 130%;
+  margin-left: 3px;
 }
 
 .tag-size-5 {
-    font-size: 150%;
-    margin-left: 3px;
+  font-size: 150%;
+  margin-left: 3px;
 }
 
 ul.list.tags {
