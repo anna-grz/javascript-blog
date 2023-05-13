@@ -83,7 +83,7 @@ function generateTitleLinks(customSelector = '') {
   console.log(opts.articleSelector + customSelector);
 
   /* for each article */
-  let html = '';
+
   for (let article of articles) {
     /* get the article id */
 
@@ -104,8 +104,6 @@ function generateTitleLinks(customSelector = '') {
     /* insert link into titleList */
 
     titleList.insertAdjacentHTML('beforeend', linkHTML);
-
-    console.log('html', html);
   }
 
   const links = document.querySelectorAll('.titles a');
@@ -174,7 +172,7 @@ function generateTags() {
     /* START LOOP: for each tag */
     for (let tag of articleTagsArray) {
       /* generate HTML of the link */
-      
+
       const linkHTMLData = { id: tag, title: tag };
       console.log('linkHTMLData', linkHTMLData);
       const linkHTML = templates.tagLink(linkHTMLData);
@@ -285,30 +283,16 @@ function generateAuthors() {
     const authorWrapper = article.querySelector(opts.articleAuthorSelector);
     console.log('authorWrapper', authorWrapper);
 
-    /* make html variable with empty string */
-    let html = '';
-
     /* get authors from data-author attribute */
     const articleAuthor = article.getAttribute('data-author');
     console.log('articleAuthor:', articleAuthor);
-
-    /* generate HTML of the link */
-    /*const linkHTML =
-      '<li><a href="#author-' +
-      articleAuthor +
-      '">' +
-      articleAuthor +
-      "</a></li>";
-    console.log("linkHTML", linkHTML); */
 
     const linkHTMLData = { id: articleAuthor, title: articleAuthor };
     console.log('linkHTMLData', linkHTMLData);
     const linkHTML = templates.authorLink(linkHTMLData);
     console.log('linkHTML', linkHTML);
 
-    /* add generated code to html variable */
-    html = html + linkHTML;
-
+    
     /* check if this is NOT already in allAuthors */
     if (!allAuthorsList.hasOwnProperty(articleAuthor)) {
       /*[NEW] add author to allAuthor object*/
@@ -332,14 +316,6 @@ function generateAuthors() {
   const allAuthorsData = { authors: [] };
   /*[NEW] START LOOP: for each author in authorList: */
   for (let author in allAuthorsList) {
-    /*const authorLinkHTML =
-      '<li><a href="#author-' +
-      author +
-      '">' +
-      author +
-      " (" +
-      allAuthors[author] +
-      ")</a></li>"; */
 
     allAuthorsData.authors.push({
       author: author,
